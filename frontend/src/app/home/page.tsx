@@ -33,10 +33,12 @@ const MaterialIcon = () => (
     </svg>
 );
 
-const OrdersIcon = () => (
+const CraftsIcon = () => (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="2" />
-        <path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2" />
+        <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2" />
+        <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2" />
+        <rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2" />
     </svg>
 );
 
@@ -89,10 +91,10 @@ const TruckIcon = () => (
 );
 
 const navItems = [
-    { href: "/home", label: "Home", Icon: HomeIcon, active: true },
-    { href: "/trends", label: "Trend Feed", Icon: TrendIcon, active: false },
-    { href: "/constraints", label: "Material Costs", Icon: MaterialIcon, active: false },
-    { href: "/guard", label: "My Orders", Icon: OrdersIcon, active: false },
+    { href: "/home", label: "Home", Icon: HomeIcon },
+    { href: "/trends", label: "Trends", Icon: TrendIcon },
+    { href: "/constraints", label: "Material Costs", Icon: MaterialIcon },
+    { href: "/my-crafts", label: "My Crafts", Icon: CraftsIcon },
 ];
 
 // ── Page ─────────────────────────────────────────────────────────────────────
@@ -104,7 +106,7 @@ export default function HomePage() {
             {/* ══ LEFT SIDEBAR ══ */}
             <aside className="w-[240px] flex-shrink-0 flex flex-col bg-white py-6 border-r border-gray-200">
                 {/* Logo */}
-                <div className="flex items-center gap-2 px-6 mb-8">
+                <div className="flex items-center gap-2 px-6 mb-16">
                     <LogoIcon />
                     <div>
                         <p className="text-[16px] font-bold text-[#1a1a1a] leading-none">ArtisanGPS</p>
@@ -112,37 +114,24 @@ export default function HomePage() {
                     </div>
                 </div>
 
-                {/* User Card */}
-                <div className="flex items-center gap-3 px-4 mx-3 mb-6 py-3 rounded-xl bg-[#F9FAFB]">
-                    <div className="w-11 h-11 rounded-full bg-gray-300 overflow-hidden flex-shrink-0 relative">
-                        <Image
-                            src="/images/ramesh_kumar.png"
-                            alt="Ramesh Kumar"
-                            fill
-                            className="object-cover"
-                        />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                        <p className="text-[14px] font-semibold text-[#1a1a1a] leading-tight truncate">Ramesh Kumar</p>
-                        <p className="text-[11px] text-gray-500 font-normal truncate">Master Weaver</p>
-                    </div>
-                </div>
-
                 {/* Nav */}
                 <nav className="flex-1 px-3 space-y-1">
-                    {navItems.map(({ href, label, Icon, active }) => (
-                        <Link
-                            key={href}
-                            href={href}
-                            className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-[14px] font-medium transition-all ${active
-                                ? "bg-[#E8F5EE] text-[#1A6B3C]"
-                                : "text-gray-600 hover:bg-gray-50"
-                                }`}
-                        >
-                            <Icon />
-                            {label}
-                        </Link>
-                    ))}
+                    {navItems.map(({ href, label, Icon }) => {
+                        const active = href === "/home";
+                        return (
+                            <Link
+                                key={href}
+                                href={href}
+                                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-[14px] font-medium transition-all ${active
+                                    ? "bg-[#E8F5EE] text-[#1A6B3C]"
+                                    : "text-gray-600 hover:bg-gray-50"
+                                    }`}
+                            >
+                                <Icon />
+                                {label}
+                            </Link>
+                        );
+                    })}
                 </nav>
 
                 {/* Logout */}
@@ -171,6 +160,21 @@ export default function HomePage() {
                                 <circle cx="12" cy="12" r="5" />
                             </svg>
                             <span className="text-[12px] font-semibold text-[#B45309]">32°C</span>
+                        </div>
+                        {/* Profile Card */}
+                        <div className="flex items-center gap-3 bg-white border border-gray-200 rounded-full pl-1.5 pr-4 py-1.5">
+                            <div className="w-9 h-9 rounded-full bg-gray-300 overflow-hidden relative flex-shrink-0">
+                                <Image
+                                    src="/images/ramesh_kumar.png"
+                                    alt="Ramesh Kumar"
+                                    fill
+                                    className="object-cover"
+                                />
+                            </div>
+                            <div>
+                                <p className="text-[13px] font-semibold text-[#1a1a1a] leading-tight">Ramesh Kumar</p>
+                                <p className="text-[11px] text-gray-400">Master Weaver</p>
+                            </div>
                         </div>
                     </div>
                 </header>
