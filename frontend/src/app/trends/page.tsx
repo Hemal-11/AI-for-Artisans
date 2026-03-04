@@ -91,74 +91,50 @@ export default function TrendsPage() {
     const [activeTab, setActiveTab] = useState("All Trends");
 
     return (
-        <div className="flex h-screen w-full bg-[#FAFAFA] overflow-hidden font-sans">
+        <div className="flex flex-col h-screen w-full bg-[#FAFAFA] overflow-hidden font-sans">
+            {/* ══ TOP NAVBAR ══ */}
+            <header className="flex items-center justify-between px-6 py-3 bg-white border-b border-gray-200 flex-shrink-0 z-10 w-full">
+                <div className="flex items-center gap-8">
+                    {/* Logo */}
+                    <Link href="/" className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-lg bg-[#E8F5EE] flex items-center justify-center">
+                            <LogoIcon />
+                        </div>
+                        <span className="text-[18px] font-bold text-[#1A6B3C]">ArtisanGPS</span>
+                    </Link>
 
-            {/* ══ LEFT SIDEBAR ══ */}
-            <aside className="w-[240px] flex-shrink-0 flex flex-col bg-white py-6 border-r border-gray-200">
-                {/* Logo */}
-                <div className="flex items-center gap-2 px-6 mb-16">
-                    <LogoIcon />
-                    <div>
-                        <p className="text-[16px] font-bold text-[#1a1a1a] leading-none">ArtisanGPS</p>
-                        <p className="text-[11px] text-gray-400 font-normal mt-0.5">Market Intelligence</p>
-                    </div>
-                </div>
-
-
-
-                {/* Nav */}
-                <nav className="flex-1 px-3 space-y-1">
-                    {navItems.map(({ href, label, Icon, active }) => (
-                        <Link
-                            key={href}
-                            href={href}
-                            className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-[14px] font-medium transition-all ${active
-                                ? "bg-[#E8F5EE] text-[#1A6B3C]"
-                                : "text-gray-600 hover:bg-gray-50"
-                                }`}
-                        >
-                            <Icon />
-                            {label}
-                        </Link>
-                    ))}
-                </nav>
-            </aside>
-
-            {/* ══ MAIN CONTENT ══ */}
-            <main className="flex-1 flex flex-col overflow-hidden">
-
-                {/* Top Navbar */}
-                <header className="flex items-center justify-between px-10 py-4 bg-white border-b border-gray-200 flex-shrink-0">
-                    {/* Center Navigation Tabs */}
-                    <nav className="flex items-center gap-1">
-                        <Link href="/trends" className="px-4 py-2 text-[14px] font-semibold text-[#1A6B3C] bg-[#E8F5EE] rounded-lg">
+                    {/* Navigation Tabs */}
+                    <nav className="flex items-center gap-2">
+                        <Link href="/trends" className="px-4 py-1.5 text-[14px] font-semibold text-[#1A6B3C] bg-[#E8F5EE] rounded-full">
                             Trends
                         </Link>
-                        <Link href="/shop" className="px-4 py-2 text-[14px] font-medium text-gray-600 hover:bg-gray-50 rounded-lg">
+                        <Link href="/shop" className="px-4 py-1.5 text-[14px] font-medium text-gray-500 hover:text-gray-800 rounded-full transition-colors">
                             My Shop
                         </Link>
-                        <Link href="/constraints" className="px-4 py-2 text-[14px] font-medium text-gray-600 hover:bg-gray-50 rounded-lg">
+                        <Link href="/constraints" className="px-4 py-1.5 text-[14px] font-medium text-gray-500 hover:text-gray-800 rounded-full transition-colors">
                             Materials
                         </Link>
-                        <Link href="/pricing" className="px-4 py-2 text-[14px] font-medium text-gray-600 hover:bg-gray-50 rounded-lg">
+                        <Link href="/pricing" className="px-4 py-1.5 text-[14px] font-medium text-gray-500 hover:text-gray-800 rounded-full transition-colors">
                             Pricing
                         </Link>
                     </nav>
+                </div>
 
-                    {/* Right: Search + Profile */}
-                    <div className="flex items-center gap-3">
-                        <div className="relative">
-                            <input
-                                type="text"
-                                placeholder="Search designs..."
-                                className="w-[240px] pl-10 pr-4 py-2 text-[13px] bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1A6B3C] focus:border-transparent"
-                            />
-                            <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" viewBox="0 0 24 24" fill="none">
-                                <circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="2" />
-                                <path d="M21 21l-4.35-4.35" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                            </svg>
-                        </div>
-                        <div className="w-10 h-10 rounded-full bg-gray-300 overflow-hidden relative">
+                {/* Right: Search + Profile */}
+                <div className="flex items-center gap-4">
+                    <div className="relative">
+                        <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" viewBox="0 0 24 24" fill="none">
+                            <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
+                            <path d="M20 20l-3-3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                        </svg>
+                        <input
+                            type="text"
+                            placeholder="Search designs..."
+                            className="w-[240px] pl-9 pr-4 py-2 text-[13px] bg-gray-50 text-gray-800 placeholder-gray-400 rounded-full focus:outline-none focus:ring-2 focus:ring-[#1A6B3C] border border-gray-200 transition-all"
+                        />
+                    </div>
+                    <div className="relative">
+                        <div className="w-8 h-8 rounded-full overflow-hidden border border-gray-200 shadow-sm">
                             <Image
                                 src="/images/ramesh_kumar.png"
                                 alt="Profile"
@@ -166,49 +142,84 @@ export default function TrendsPage() {
                                 className="object-cover"
                             />
                         </div>
+                        <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-[#10B981] border-2 border-white rounded-full"></div>
                     </div>
-                </header>
+                </div>
+            </header>
 
-                {/* Filter Tabs Bar */}
-                <div className="flex items-center gap-3 px-10 py-3 bg-white border-b border-gray-200">
-                    <button className="p-2 hover:bg-gray-50 rounded-lg">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                            <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                        </svg>
-                    </button>
-                    <div className="flex items-center gap-2">
-                        {trendTabs.map((tab) => (
-                            <button
-                                key={tab}
-                                onClick={() => setActiveTab(tab)}
-                                className={`px-4 py-2 rounded-lg text-[13px] font-semibold transition-all ${activeTab === tab
-                                    ? "bg-[#1A6B3C] text-white"
-                                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+            <div className="flex flex-1 overflow-hidden">
+                {/* ══ LEFT SIDEBAR ══ */}
+                <aside className="w-[240px] flex-shrink-0 flex flex-col bg-white border-r border-gray-200 overflow-y-auto py-6">
+
+                    {/* Nav */}
+                    <nav className="flex-1 px-3 space-y-1">
+                        {navItems.map(({ href, label, Icon, active }) => (
+                            <Link
+                                key={href}
+                                href={href}
+                                className={`flex items-center justify-between px-3 py-2.5 rounded-lg text-[14px] font-medium transition-all ${active
+                                    ? "bg-[#E8F5EE] text-[#1A6B3C]"
+                                    : "text-gray-600 hover:bg-gray-50"
                                     }`}
                             >
-                                {tab}
-                            </button>
+                                <div className="flex items-center gap-3">
+                                    <Icon />
+                                    {label}
+                                </div>
+                                {label === "My Orders" && (
+                                    <span className="w-5 h-5 rounded-full bg-gray-100 text-[11px] font-bold text-gray-600 flex items-center justify-center">3</span>
+                                )}
+                            </Link>
                         ))}
-                    </div>
-                    <button className="ml-auto p-2 hover:bg-gray-50 rounded-lg">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                            <circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="2" />
-                            <path d="M21 21l-4.35-4.35" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                        </svg>
-                    </button>
-                </div>
+                    </nav>
+                </aside>
 
-                {/* Scrollable Content */}
-                <div className="flex-1 overflow-y-auto">
-                    <div className="flex gap-6 px-10 py-8">
+                {/* ══ MAIN CONTENT ══ */}
+                <main className="flex-1 flex flex-col overflow-y-auto bg-[#FAFAFA]">
+
+                    <div className="flex justify-center gap-10 px-8 py-6 w-full max-w-[1200px] mx-auto">
 
                         {/* ══ TREND FEED ══ */}
-                        <div className="flex-1 space-y-6">
+                        <div className="w-full max-w-[680px] flex-shrink-0 space-y-6">
+
+                            {/* Filter Tabs Bar */}
+                            <div className="flex items-center justify-between p-3 bg-white rounded-[24px] shadow-sm border border-gray-100">
+                                <button className="p-2 text-[#1A6B3C] hover:bg-gray-50 rounded-lg transition-colors ml-2">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                        <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                    </svg>
+                                </button>
+
+                                <div className="flex items-center gap-3">
+                                    {trendTabs.map((tab) => (
+                                        <button
+                                            key={tab}
+                                            onClick={() => setActiveTab(tab)}
+                                            className={`min-w-[70px] px-5 py-2.5 flex items-center justify-center text-center rounded-[20px] text-[13px] font-bold transition-all leading-[1.2] ${activeTab === tab
+                                                ? "bg-[#1A6B3C] text-white"
+                                                : "bg-[#F4F5F7] text-[#6B7280] hover:bg-gray-200"
+                                                }`}
+                                        >
+                                            <span className="whitespace-pre-line">{tab.replace(' ', '\n')}</span>
+                                        </button>
+                                    ))}
+                                </div>
+
+                                <div className="flex items-center pr-3">
+                                    <div className="w-[1px] h-8 bg-gray-200 mr-4"></div>
+                                    <button className="p-2 text-gray-400 hover:text-gray-800 transition-colors">
+                                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
+                                            <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
+                                            <path d="M20 20l-3-3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
 
                             {/* Trend Card 1 */}
-                            <div className="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm">
+                            <div className="bg-white rounded-[20px] overflow-hidden border border-gray-100 shadow-sm">
                                 {/* Card Header */}
-                                <div className="flex items-start justify-between p-4 border-b border-gray-100">
+                                <div className="flex items-start justify-between p-4 bg-white">
                                     <div className="flex items-center gap-3">
                                         <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-amber-700 font-bold text-[16px]">
                                             M
@@ -228,7 +239,7 @@ export default function TrendsPage() {
                                 </div>
 
                                 {/* Media */}
-                                <div className="relative w-full h-[400px] bg-gray-200">
+                                <div className="relative w-full h-[400px] bg-gray-100 border-y border-gray-100">
                                     <Image
                                         src="/images/loom_weaving.png"
                                         alt="Trend"
@@ -270,8 +281,8 @@ export default function TrendsPage() {
                             </div>
 
                             {/* Trend Card 2 */}
-                            <div className="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm">
-                                <div className="flex items-start justify-between p-4 border-b border-gray-100">
+                            <div className="bg-white rounded-[20px] overflow-hidden border border-gray-100 shadow-sm">
+                                <div className="flex items-start justify-between p-4 bg-white">
                                     <div className="flex items-center gap-3">
                                         <div className="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center text-teal-700 font-bold text-[16px]">
                                             A
@@ -324,8 +335,8 @@ export default function TrendsPage() {
                             </div>
 
                             {/* Trend Card 3 */}
-                            <div className="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm">
-                                <div className="flex items-start justify-between p-4 border-b border-gray-100">
+                            <div className="bg-white rounded-[20px] overflow-hidden border border-gray-100 shadow-sm">
+                                <div className="flex items-start justify-between p-4 bg-white">
                                     <div className="flex items-center gap-3">
                                         <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold text-[16px]">
                                             R
@@ -383,7 +394,7 @@ export default function TrendsPage() {
                         </div>
 
                         {/* ══ RIGHT SIDEBAR - Market Intelligence ══ */}
-                        <aside className="w-[320px] flex-shrink-0 space-y-6">
+                        <aside className="w-[380px] flex-shrink-0 space-y-6">
 
                             {/* Market Intelligence Header */}
                             <div className="flex items-center gap-2">
@@ -490,9 +501,8 @@ export default function TrendsPage() {
                         </aside>
 
                     </div>
-                </div>
-
-            </main>
+                </main>
+            </div>
         </div>
     );
 }
